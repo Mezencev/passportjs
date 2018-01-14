@@ -1,12 +1,11 @@
-var db = require("../models");
-var passport = require("../config/passport");
+const db = require('../models');
+const passport = require('../config/passport');
 
 module.exports = (app) => {
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.json("/members");
+  app.post('/api/login', passport.authenticate('local'), (req, res) => {
+    res.json('members');
   });
-
-  app.post("/api/signup", (req, res) => {
+  app.post('/api/signup', (req, res) => {
     console.log(req.body);
     db.User.create({
       email: req.body.email,
@@ -16,16 +15,15 @@ module.exports = (app) => {
     }).catch(function(err) {
       console.log(err);
       res.json(err);
-      
     });
   });
-
-  app.get("/logout", function(req, res) {
+    
+    
+  app.get('/logout', (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.redirect('/');
   });
-
-  app.get("/api/user_data", function(req, res) {
+  app.get('/api/user_data', (req, res) => {
     if (!req.user) {
       res.json({});
     }
