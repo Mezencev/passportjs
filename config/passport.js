@@ -27,9 +27,10 @@ passport.use(new LocalStrategy(
   }
 ));
 passport.serializeUser((user, cb) => {
-  cd(null, user);
+  cb(null, user);
 });
-passport.deserializeUser((obj, cd) => {
-  cd(null, obj);
+passport.deserializeUser((obj, cb) => {
+  cb(null, obj);
 });
 module.exports = passport;
+
